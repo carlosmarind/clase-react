@@ -1,0 +1,26 @@
+[
+    {
+        "titulo": "Oppenheimer-1",
+        "resumen": "La historia del científico J. Robert Oppenheimer y su rol en el desarrollo de la bomba atómica.",
+        "enlaceImdb": "https://www.imdb.com/title/tt15398776/?ref_=ttls_li_tt",
+        "imagen": "https://m.media-amazon.com/images/M/MV5BNTFlZDI1YWQtMTVjNy00YWU1LTg2YjktMTlhYmRiYzQ3NTVhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+    },
+    {
+        "titulo": "Aftersun-1",
+        "resumen": "Sophie reflexiona sobre la alegría y melancolía de unas vacaciones que tomó con su padre veinte años antes. Los recuerdos reales o no, llenan los espacios mientras intenta reconciliar al padre que conoció con el hombre que no conocía.",
+        "enlaceImdb": "https://www.imdb.com/title/tt19770238/?ref_=fn_al_tt_4",
+        "imagen": "https://m.media-amazon.com/images/M/MV5BMzg5NjI0MTAtYjY1YS00MzRiLTkwYjgtZDA0MTU4ODQyMWIyXkEyXkFqcGdeQXVyNjM0MTI4Mw@@._V1_.jpg"
+    },
+    {
+        "titulo": "Oppenheimer-2",
+        "resumen": "La historia del científico J. Robert Oppenheimer y su rol en el desarrollo de la bomba atómica.",
+        "enlaceImdb": "https://www.imdb.com/title/tt15398776/?ref_=ttls_li_tt",
+        "imagen": "https://m.media-amazon.com/images/M/MV5BNTFlZDI1YWQtMTVjNy00YWU1LTg2YjktMTlhYmRiYzQ3NTVhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+    },
+    {
+        "titulo": "Aftersun-2",
+        "resumen": "Sophie reflexiona sobre la alegría y melancolía de unas vacaciones que tomó con su padre veinte años antes. Los recuerdos reales o no, llenan los espacios mientras intenta reconciliar al padre que conoció con el hombre que no conocía.",
+        "enlaceImdb": "https://www.imdb.com/title/tt19770238/?ref_=fn_al_tt_4",
+        "imagen": "https://m.media-amazon.com/images/M/MV5BMzg5NjI0MTAtYjY1YS00MzRiLTkwYjgtZDA0MTU4ODQyMWIyXkEyXkFqcGdeQXVyNjM0MTI4Mw@@._V1_.jpg"
+    }
+]
