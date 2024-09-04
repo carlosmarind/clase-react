@@ -1,4 +1,4 @@
-import { Personaje, Transformations } from "./DragonBallz";
+import { Personaje } from "./DragonBallz";
 
 interface PersonajePros {
     personaje: Personaje

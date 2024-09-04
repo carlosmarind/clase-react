@@ -1,15 +1,22 @@
+import { Link } from "react-router-dom";
+
 interface MainLayoutProps {
     children: React.ReactNode;
-    elemento: string
 }
 
 export const MainLayout = (props: MainLayoutProps) => {
     return (
         <div>
             <header>
-                <h1>Header</h1>
+                <ul>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/personajes">Personajes</Link></li>
+                    <li><Link to="/about">About</Link></li>
+                    <li></li>
+                </ul>
+
             </header>
-            <main data-type={props.elemento}>
+            <main>
                 {props.children}
             </main>
             <footer>
