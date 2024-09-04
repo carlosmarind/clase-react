@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { PokemonDetail } from "../services/pokemon/IResponseDetail";
+import { MainLayout } from "../layout/MainLayout";
 
 export const DetallePersonaje = () => {
+
+    const navigate = useNavigate();
 
     const { id } = useParams();
     const [detallePersonaje, setDetallePersonaje] = useState<PokemonDetail>();
@@ -14,15 +17,20 @@ export const DetallePersonaje = () => {
     }
         , [id]);
 
+    const handleClick = () => {
+        navigate(-1);
+    }
+
     return (
-        <div>
+        <MainLayout>
             <h3>Detalle de Personaje</h3>
             <p>Esta es la pagina de detalle de personaje</p>
             <p>Revisando detalle de pokemon con id {id}</p>
             <div>
                 <p>Nombre: {detallePersonaje?.name}</p>
                 <img src={detallePersonaje?.sprites.front_default} alt={detallePersonaje?.name} />
+                <button onClick={handleClick} >Volver</button>
             </div>
-        </div>
+        </MainLayout>
     )
 }

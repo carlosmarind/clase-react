@@ -7,6 +7,7 @@ import { AboutPage } from './page/AboutPage'
 import { HomePage } from './page/HomePage'
 import { PersonajesPage } from './page/PersonajesPage'
 import { DetallePersonaje } from './page/DetallePersonaje'
+import { DashboardPage } from './page/DashboardPage'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -15,6 +16,12 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/" element={<HomePage />} />
         <Route path="/personajes" element={<PersonajesPage />} />
         <Route path="/detalle-personaje/:id" element={<DetallePersonaje />} />
+
+        <Route path="/dashboard" element={<DashboardPage />}>
+          <Route index element={<div>Contenido general del dashboard</div>} />
+          <Route path="detalle" element={<div>Contenido detalle del dashboard</div>} />
+        </Route>
+
         <Route path="/about" element={<AboutPage title="Sobre nostros" />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

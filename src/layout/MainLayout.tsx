@@ -11,10 +11,9 @@ export const MainLayout = (props: MainLayoutProps) => {
                 <ul>
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/personajes">Personajes</Link></li>
+                    <li><Link to="/dashboard">Dashboard</Link></li>
                     <li><Link to="/about">About</Link></li>
-                    <li></li>
                 </ul>
-
             </header>
             <main>
                 {props.children}
