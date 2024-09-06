@@ -2,10 +2,10 @@ import { MainLayout } from "../layout/MainLayout"
 interface AboutPageProps {
     title: string;
 }
-export const AboutPage = (props:AboutPageProps) => {
+export const AboutPage = (props: AboutPageProps) => {
 
     document.title = props.title;
-    
+
     return (
         <MainLayout>
             <h3>About</h3>
