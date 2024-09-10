@@ -24,11 +24,10 @@ export const PersonajesPage = () => {
                     tokensUrl.pop()
 
                     return (
-                        <>
-                            <li key={index}>
-                                <Link to={`/detalle-personaje/${tokensUrl.pop()}`}>{pokemon.name}</Link>
-                            </li >
-                        </>)
+                        <li key={index}>
+                            <Link to={`/detalle-personaje/${tokensUrl.pop()}`}>{pokemon.name}</Link>
+                        </li >
+                    )
                 })
                 }
             </ul>

@@ -12,9 +12,9 @@ export const Pelicula = (props: PeliculaProps) => {
 
     const [visto, setVisto] = useState(false);
 
-    let textoBoton = visto ? "Visto" : "No visto";
+    const textoBoton = visto ? "Visto" : "No visto";
 
-    let classNameVisto = visto ? "visto" : "no-visto";
+    const classNameVisto = visto ? "visto" : "no-visto";
 
     const cambiarEstadoVisto = () => {
         setVisto(!visto);

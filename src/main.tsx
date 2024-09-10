@@ -20,7 +20,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/personajes" element={<PersonajesPage />} />
         <Route path="/detalle-personaje/:id" element={<DetallePersonaje />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/admin" element={<PrivateRoute><AdminPage /></PrivateRoute>} />
+        <Route path="/admin" element={<PrivateRoute roles={["admin", "user"]}><AdminPage /></PrivateRoute>} />
         <Route path="/dashboard" element={<DashboardPage />}>
           <Route index element={<div>Contenido general del dashboard</div>} />
           <Route path="detalle" element={<div>Contenido detalle del dashboard</div>} />

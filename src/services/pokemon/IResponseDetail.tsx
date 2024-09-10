@@ -12,8 +12,6 @@ export interface PokemonDetail {
     moves: Move[];
     name: string;
     order: number;
-    past_abilities: any[];
-    past_types: any[];
     species: Species;
     sprites: Sprites;
     stats: Stat[];
