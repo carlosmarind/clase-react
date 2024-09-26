@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
-import { MainLayout } from "../layout/MainLayout";
-import { isAuth, userHasRole } from "../services/login/loginService";
+import { isAuth, userHasRole } from "../../services/login/loginService";
+import { MainLayout } from "../MainLayout";
+
 
 interface PrivateRouteProps {
     children: ReactNode;

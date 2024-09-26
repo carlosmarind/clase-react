@@ -60,7 +60,7 @@ export const LoginPage = () => {
             <p>Esta es la pagina de login</p>
             <form>
                 <input type="text" placeholder="Usuario" name="user" onChange={handleChange} value={form.user} />
-                <input type="password" placeholder="Contraseña" name="password" onChange={handleChange} value={form.password} />
+                <input type="password" placeholder="Contraseña" name="password" autoComplete="password" onChange={handleChange} value={form.password} />
                 <input type="checkbox" name="acepto" onChange={handleChange} checked={form.acepto} />
                 <select name="region" id="region" onChange={handleChange} value={form.region}>
                     <option value="">Seleccione...</option>

@@ -1,5 +1,4 @@
 import { createRoot } from 'react-dom/client'
-import './index.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { NotFoundPage } from './page/NotFoundPage'
 import { AboutPage } from './page/AboutPage'
@@ -8,11 +7,13 @@ import { PersonajesPage } from './page/PersonajesPage'
 import { DetallePersonaje } from './page/DetallePersonaje'
 import { DashboardPage } from './page/DashboardPage'
 import { AdminPage } from './page/AdminPage'
-import { PrivateRoute } from './components/PrivateRoute'
 import { LoginPage } from './page/LoginPage'
+import { PrivateRoute } from './layout/protected/PrivateRoute'
+import './index.css'
+import { StrictMode } from 'react'
 
 createRoot(document.getElementById('root')!).render(
-  
+  <StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -28,5 +29,5 @@ createRoot(document.getElementById('root')!).render(
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
- 
+  </StrictMode>
 )
