@@ -1,0 +1,54 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": "2",
+      "title": "mi post personal",
+      "author": "cmd"
+    },
+    {
+      "id": "b99f",
+      "title": "mi titulo",
+      "body": "mi cuerpo",
+      "userId": 1
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "body": "some comment",
+      "postId": 1
+    },
+    {
+      "id": "2",
+      "body": "some other comment",
+      "postId": 1
+    },
+    {
+      "id": "3",
+      "body": "que feo el comentario",
+      "postId": 2
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "users": [
+    {
+      "id": "1",
+      "name": "Leanne Graham"
+    },
+    {
+      "id": "2",
+      "name": "Ervin Howell"
+    },
+    {
+      "id": "3",
+      "name": "Clementine Bauch"
+    }
+  ]
+}

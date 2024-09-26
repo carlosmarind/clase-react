@@ -1,4 +1,3 @@
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
@@ -13,7 +12,7 @@ import { PrivateRoute } from './components/PrivateRoute'
 import { LoginPage } from './page/LoginPage'
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
+  
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -29,5 +28,5 @@ createRoot(document.getElementById('root')!).render(
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
-  </StrictMode>,
+ 
 )
