@@ -1,22 +1,17 @@
 import { useEffect, useState } from "react";
 import { Post } from "./Post";
+import { IPost } from "../page/PostPage";
 
-interface Post {
-    userId: number;
-    id: number;
-    title: string;
-    body: string;
-}
 
 export const PostList = () => {
 
-    const [posts, setPosts] = useState<Post[]>([]);
+    const [posts, setPosts] = useState<IPost[]>([]);
 
 
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/posts')
+        fetch('http://localhost:4000/posts')
             .then(response => response.json())
-            .then((data: Post[]) => {
+            .then((data: IPost[]) => {
                 setPosts(data);
             });
     }, []);
@@ -27,7 +22,7 @@ export const PostList = () => {
             <ul>
                 {
                     posts.map(post => (
-                        <Post key={post.id} userId={post.userId} id={post.id} title={post.title} body={post.body} />
+                        <Post key={post.id} id={post.id!} userId={post.userId} title={post.title} body={post.content} imagen={post.imagen} />
                     ))}
             </ul>
         </>

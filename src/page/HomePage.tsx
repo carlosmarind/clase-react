@@ -13,16 +13,18 @@ export const HomePage = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    title: 'mi titulo',
-                    body: 'mi cuerpo',
-                    userId: 1
+                body : JSON.stringify({
+                    name: 'jose',
+                    age: 25
                 })
             }
-
-            const response = await fetch('http://localhost:4000/posts', fetchOptions)
-            const data = await response.json();
-            console.log(data)
+            try {
+                const response = await fetch('http://localhost:4000/posts', fetchOptions)
+                const data = await response.json();
+                console.log(data)
+            } catch (error:any) {
+                console.log('error en la solicitud', error.message)
+            }
             //quinto
             console.log('terminando solicitud web')
         }

@@ -11,6 +11,7 @@ import { LoginPage } from './page/LoginPage'
 import { PrivateRoute } from './layout/protected/PrivateRoute'
 import './index.css'
 import { StrictMode } from 'react'
+import { PostPage } from './page/PostPage'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -21,6 +22,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/detalle-personaje/:id" element={<DetallePersonaje />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/admin" element={<PrivateRoute roles={["admin", "user"]}><AdminPage /></PrivateRoute>} />
+        <Route path="/posts" element={<PrivateRoute roles={["admin", "user"]}><PostPage /></PrivateRoute>} />
         <Route path="/dashboard" element={<DashboardPage />}>
           <Route index element={<div>Contenido general del dashboard</div>} />
           <Route path="detalle" element={<div>Contenido detalle del dashboard</div>} />
