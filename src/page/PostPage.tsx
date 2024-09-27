@@ -12,19 +12,37 @@ export interface IPost {
 
 export const PostPage = () => {
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [post, setPost] = useState<IPost>({
         userId: 0,
         title: '',
         content: ''
     });
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = event.target;
         setPost({ ...post, [name]: value });
     }
 
     const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files![0];
+        const name = event.target.files![0].name;
+        const extension = name.split('.').pop();
+
+        switch (extension) {
+            case 'jpg':
+            case 'jpeg':
+            case 'png':
+                break;
+            default:
+                alert('Solo se permiten imágenes');
+                setPost({ ...post, imagen: '' });
+                event.target.files = null;
+                return;
+        }
+
+        const size = event.target.files![0].size;
+        console.log(size);
         const base64 = await convertirBase64(file);
         setPost({ ...post, imagen: base64 });
     }
@@ -39,11 +57,11 @@ export const PostPage = () => {
     }
 
     const handleSubmit = async (event: React.FormEvent) => {
-
+        setIsSubmitting(true);
         event.preventDefault();
-        
+
         console.log(post);
-        
+
         if (!post.userId || !post.title || !post.content) {
             alert('Todos los campos son obligatorios');
             return;
@@ -62,6 +80,7 @@ export const PostPage = () => {
         } else {
             alert('Error al crear el post');
         }
+        setIsSubmitting(false);
     }
 
     return (
@@ -70,7 +89,7 @@ export const PostPage = () => {
                 <form>
                     <div>
                         <label htmlFor="userId">Usuario</label>
-                        <select name="userId" id="userId" value={post.userId}>
+                        <select name="userId" id="userId" value={post.userId} onChange={handleChange}>
                             <option value="">Seleccione...</option>
                             <option value="1">Pedrito</option>
                             <option value="2">Sara</option>
@@ -90,7 +109,7 @@ export const PostPage = () => {
                         <input accept="image/*" type="file" id="file" name="file" onChange={handleFileUpload} />
                     </div>
                     <div>
-                        <button type="button" onClick={handleSubmit}>Enviar</button>
+                        <button type="button" disabled={isSubmitting} onClick={handleSubmit}>Enviar</button>
                     </div>
                 </form>
             </div>
