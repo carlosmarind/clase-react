@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import fileTypeChecker from "file-type-checker";
 import { MainLayout } from "../layout/MainLayout"
 import { PostList } from "../components/PostList";
 
@@ -25,26 +26,45 @@ export const PostPage = () => {
     }
 
     const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files![0];
-        const name = event.target.files![0].name;
-        const extension = name.split('.').pop();
+        try {
+            const file = event.target.files![0];
 
-        switch (extension) {
-            case 'jpg':
-            case 'jpeg':
-            case 'png':
-                break;
-            default:
-                alert('Solo se permiten imágenes');
-                setPost({ ...post, imagen: '' });
-                event.target.files = null;
+            //validacion tamaño
+            if (!validarTamanoFichero(file)) {
+                alert("El archivo es muy grande");
+                event.target.value = '';
                 return;
-        }
+            }
 
-        const size = event.target.files![0].size;
-        console.log(size);
-        const base64 = await convertirBase64(file);
-        setPost({ ...post, imagen: base64 });
+            //validacion tipo
+            if (!await validarTipoFichero(file)) {
+                alert("El archivo no es una imagen");
+                event.target.value = '';
+                return;
+            }
+
+            const base64 = await convertirBase64(file);
+            setPost({ ...post, imagen: base64 });
+        } catch (err) {
+            console.error("Error: ", err);
+            event.target.value = '';
+        }
+    }
+
+    const validarTamanoFichero = (file: File) => {
+        const limitSize = 1024 * 1024 * 2; // 2MB
+        const fileSize = file.size;
+        return fileSize <= limitSize;
+    }
+
+    const validarTipoFichero = (file: File) => {
+        return new Promise<boolean>((resolve, reject) => {
+            const fileReader = new FileReader();
+            const types = ["jpeg", "png", "gif"];
+            fileReader.readAsArrayBuffer(file);
+            fileReader.onload = () => resolve(fileTypeChecker.validateFileType(fileReader.result as ArrayBuffer, types));
+            fileReader.onerror = (error) => reject(error);
+        });
     }
 
     const convertirBase64 = (file: File) => {
@@ -57,16 +77,14 @@ export const PostPage = () => {
     }
 
     const handleSubmit = async (event: React.FormEvent) => {
-        setIsSubmitting(true);
         event.preventDefault();
-
-        console.log(post);
-
+      
         if (!post.userId || !post.title || !post.content) {
             alert('Todos los campos son obligatorios');
             return;
         }
 
+        setIsSubmitting(true);
         const response = await fetch('http://localhost:4000/posts', {
             method: 'POST',
             headers: {

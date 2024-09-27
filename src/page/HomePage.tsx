@@ -22,8 +22,8 @@ export const HomePage = () => {
                 const response = await fetch('http://localhost:4000/posts', fetchOptions)
                 const data = await response.json();
                 console.log(data)
-            } catch (error:any) {
-                console.log('error en la solicitud', error.message)
+            } catch (error) {
+                console.log('error en la solicitud', error)
             }
             //quinto
             console.log('terminando solicitud web')

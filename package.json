@@ -11,6 +11,7 @@
     "json-server": "json-server src/data/data.json --port 4000"
   },
   "dependencies": {
+    "file-type-checker": "^1.1.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.1"
