@@ -12,24 +12,30 @@ import { PrivateRoute } from './layout/protected/PrivateRoute'
 import './index.css'
 import { StrictMode } from 'react'
 import { PostPage } from './page/PostPage'
+import { Provider } from 'react-redux'
+import { store } from './states/store'
+import { GestionUsuarios } from './page/GestionUsuarios'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/personajes" element={<PersonajesPage />} />
-        <Route path="/detalle-personaje/:id" element={<DetallePersonaje />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/admin" element={<PrivateRoute roles={["admin", "user"]}><AdminPage /></PrivateRoute>} />
-        <Route path="/posts" element={<PrivateRoute roles={["admin", "user"]}><PostPage /></PrivateRoute>} />
-        <Route path="/dashboard" element={<DashboardPage />}>
-          <Route index element={<div>Contenido general del dashboard</div>} />
-          <Route path="detalle" element={<div>Contenido detalle del dashboard</div>} />
-        </Route>
-        <Route path="/about" element={<AboutPage title="Sobre nostros" />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/personajes" element={<PersonajesPage />} />
+          <Route path="/users" element={<GestionUsuarios />} />
+          <Route path="/detalle-personaje/:id" element={<DetallePersonaje />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/admin" element={<PrivateRoute roles={["admin", "user"]}><AdminPage /></PrivateRoute>} />
+          <Route path="/posts" element={<PrivateRoute roles={["admin", "user"]}><PostPage /></PrivateRoute>} />
+          <Route path="/dashboard" element={<DashboardPage />}>
+            <Route index element={<div>Contenido general del dashboard</div>} />
+            <Route path="detalle" element={<div>Contenido detalle del dashboard</div>} />
+          </Route>
+          <Route path="/about" element={<AboutPage title="Sobre nostros" />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   </StrictMode>
 )

@@ -1,13 +1,15 @@
+
+
 interface ILogin {
     user: string;
     password: string;
     region: string;
+    email: string;
     roles?: string[];
 }
 
 
 export function login(user: ILogin): boolean {
-
     if (user.user === 'admin' && user.password === 'admin') {
 
         const userResponse: ILogin = {

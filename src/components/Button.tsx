@@ -1,10 +1,17 @@
-interface ButtonProps {
-    texto: string;
-    dataType: string
-}
+import { useDispatch, useSelector } from "react-redux";
+import { RootType } from "../states/store";
+import { decrement, increment } from "../states/counterSlice";
 
-export function Button(props: ButtonProps) {
+export function Button() {
+
+    const counterState = useSelector((state: RootType) => state.counter)
+    const dispatch = useDispatch();
+
     return (
-        <button data-type={props.dataType}>{props.texto}</button>
+        <div>
+            <h4>Mi estado de contador es: {counterState}</h4>
+            <button onClick={() => dispatch(increment())}>Aumentar</button>
+            <button onClick={() => dispatch(decrement())}>Disminuir</button>
+        </div>
     );
 }

@@ -2,9 +2,12 @@ import { useState } from "react";
 import { login } from "../services/login/loginService";
 import { useNavigate } from "react-router-dom";
 import { MainLayout } from "../layout/MainLayout";
+import { useDispatch } from "react-redux";
+import { save } from "../states/loggedUserSlice";
 
 interface IForm {
     user: string;
+    email: string;
     password: string;
     region: string;
     acepto: boolean;
@@ -13,11 +16,13 @@ interface IForm {
 export const LoginPage = () => {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [error, setError] = useState<boolean>(false);
     const [validCredential, setValidCredential] = useState<boolean>(true);
     const [form, setForm] = useState<IForm>({
         user: '',
+        email: '',
         password: '',
         region: '',
         acepto: false
@@ -28,13 +33,14 @@ export const LoginPage = () => {
         event.preventDefault();
 
         //validacion de formulario
-        if (form.user === '' || form.password === '' || form.region === '') {
+        if (form.user === '' || form.password === '' || form.region === '' || form.email === '') {
             setError(true);
             return;
         }
 
         //validacion de credenciales
         if (login(form)) {
+            dispatch(save({ user: form.user, region: form.region, email: form.email }))
             navigate("/home");
         } else {
             setValidCredential(false);
@@ -60,6 +66,7 @@ export const LoginPage = () => {
             <p>Esta es la pagina de login</p>
             <form>
                 <input type="text" placeholder="Usuario" name="user" onChange={handleChange} value={form.user} />
+                <input type="emaol" placeholder="Email" name="email" onChange={handleChange} value={form.email} />
                 <input type="password" placeholder="Contraseña" name="password" autoComplete="password" onChange={handleChange} value={form.password} />
                 <input type="checkbox" name="acepto" onChange={handleChange} checked={form.acepto} />
                 <select name="region" id="region" onChange={handleChange} value={form.region}>
