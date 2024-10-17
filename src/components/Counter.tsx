@@ -41,7 +41,7 @@ export const Counter = () => {
                     :
                     <>
                         <p>es impar</p>
-                        <Button texto="presioname" dataType="ejemplo"></Button>
+                        <Button></Button>
                     </>
 
             }
