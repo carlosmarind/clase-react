@@ -1,3 +1,5 @@
+ARG IMAGEN
+ARG ENDPOINT
 #etapa uno, build o construccion.
 FROM node:20 AS build
 
@@ -10,10 +12,12 @@ COPY . .
 RUN npm run build
 
 #etapa dos, empaquetado
-FROM nginx:alpine
+FROM nginx:$IMAGEN
 
 COPY --from=build /usr/app/dist /usr/share/nginx/html
 
 WORKDIR /usr/share/nginx/html
+
+ENV VITE_URL_ENDPOINT_BACKEND=$ENDPOINT
 
 EXPOSE 80

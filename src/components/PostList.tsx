@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Post } from "./Post";
 import { IPost } from "../page/PostPage";
+import { configuracion } from "../config/appConfiguration";
 
 
 export const PostList = () => {
@@ -9,7 +10,7 @@ export const PostList = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:4000/posts')
+        fetch(configuracion.urlJsonServerPost)
             .then(response => response.json())
             .then((data: IPost[]) => {
                 setPosts(data);
