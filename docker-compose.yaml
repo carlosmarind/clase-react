@@ -1,0 +1,7 @@
+name: curso-react
+services:
+  frontend:
+    image: carlosmarind/curso-react:cmd
+    ports:
+      - 80:80
+
