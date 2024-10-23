@@ -29,7 +29,7 @@ export const LoginPage = () => {
     });
 
 
-    const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
 
         //validacion de formulario
@@ -39,7 +39,7 @@ export const LoginPage = () => {
         }
 
         //validacion de credenciales
-        if (login(form)) {
+        if (await login(form)) {
             dispatch(save({ user: form.user, region: form.region, email: form.email }))
             navigate("/home");
         } else {

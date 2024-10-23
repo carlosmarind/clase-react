@@ -15,6 +15,7 @@ import { PostPage } from './page/PostPage'
 import { Provider } from 'react-redux'
 import { store } from './states/store'
 import { GestionUsuarios } from './page/GestionUsuarios'
+import { AuthPage } from './page/AuthPage'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -26,6 +27,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="/users" element={<GestionUsuarios />} />
           <Route path="/detalle-personaje/:id" element={<DetallePersonaje />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/auth" element={<AuthPage />} />
           <Route path="/admin" element={<PrivateRoute roles={["admin", "user"]}><AdminPage /></PrivateRoute>} />
           <Route path="/posts" element={<PrivateRoute roles={["admin", "user"]}><PostPage /></PrivateRoute>} />
           <Route path="/dashboard" element={<DashboardPage />}>
