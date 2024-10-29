@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
 import { MainLayout } from "../layout/MainLayout";
-import { getBasicToken } from "../services/login/loginService";
+import { getJwtToken } from "../services/login/loginService";
 
 export const AuthPage = () => {
 
-
-    const basicAuth = getBasicToken();
+    const jwtToken = getJwtToken();
     const [mensaje, setMensaje] = useState<string>('');
 
     useEffect(() => {
 
-        fetch('http://localhost:3001/secure-basic/get_endpoint', {
+        fetch('http://localhost:3001/secure-jwt/get_endpoint', {
             headers: {
-                'Authorization': basicAuth,
+                'Authorization': `Bearer ${jwtToken}`,
             }
         }).then((response) => {
             return response.json();

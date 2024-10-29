@@ -1,5 +1,5 @@
 
-
+import { jwtDecode } from "jwt-decode";
 interface ILogin {
     user: string;
     password: string;
@@ -13,7 +13,7 @@ export async function login(user: ILogin): Promise<boolean> {
 
     const request = { username: user.user, password: user.password }
 
-    const response = await fetch("http://localhost:3001/login", {
+    const response = await fetch("http://localhost:3001/auth", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -24,14 +24,11 @@ export async function login(user: ILogin): Promise<boolean> {
     if (response.ok) {
         const jsonResponse = await response.json();
 
-        const basicAuth = btoa(`${user.user}:${user.password}`);
+        const decodedToken = jwtDecode(jsonResponse.token);
 
         const userResponse = {
-            isAuthenticated: jsonResponse.metadata.isAuthenticated,
-            username: jsonResponse.metadata.username,
-            email: jsonResponse.metadata.email,
-            roles: jsonResponse.metadata.role,
-            basicAuth: `Basic ${basicAuth}`
+            ...decodedToken,
+            token: jsonResponse.token
         }
         const datosUsuario = JSON.stringify(userResponse);
         localStorage.setItem('user', datosUsuario);
@@ -51,6 +48,15 @@ export const getBasicToken = () => {
     if (user) {
         const userResponse = JSON.parse(user);
         return userResponse.basicAuth;
+    }
+    return '';
+}
+
+export const getJwtToken = () => {
+    const user = localStorage.getItem('user');
+    if (user) {
+        const userResponse = JSON.parse(user);
+        return userResponse.token;
     }
     return '';
 }
