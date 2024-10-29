@@ -5,7 +5,7 @@ interface ILogin {
     password: string;
     region: string;
     email: string;
-    roles?: string[];
+    role?: string[];
 }
 
 
@@ -65,7 +65,7 @@ export const userHasRole = (roles: string[]) => {
     const user = localStorage.getItem('user');
     if (user) {
         const userResponse: ILogin = JSON.parse(user);
-        return roles.some(role => userResponse.roles?.includes(role));
+        return roles.some(role => userResponse.role?.includes(role));
     }
     return false;
 }

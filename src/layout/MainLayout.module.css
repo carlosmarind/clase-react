@@ -8,3 +8,36 @@
     flex: 1;
     margin: 64px auto;
 }
+
+table {
+    margin-top: 50px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #4CAF50;
+    /* Color de fondo para el encabezado */
+    color: white;
+    /* Color de texto del encabezado */
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    /* Líneas divisorias entre filas y columnas */
+    padding: 12px;
+    /* Espaciado interno para celdas */
+    text-align: left;
+    /* Alineación de texto */
+}
+
+tr:nth-child(even) {
+    background-color: gray;
+    /* Color de fondo para filas pares */
+}
+
+tr:hover {
+    background-color: #ddd;
+    /* Color de fondo al pasar el mouse */
+}

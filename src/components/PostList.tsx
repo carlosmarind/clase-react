@@ -1,28 +1,22 @@
-import { useEffect, useState } from "react";
 import { Post } from "./Post";
 import { IPost } from "../page/PostPage";
 import { configuracion } from "../config/appConfiguration";
+import { useFetch } from "../hooks/useFetch";
 
 
 export const PostList = () => {
 
-    const [posts, setPosts] = useState<IPost[]>([]);
-
-
-    useEffect(() => {
-        fetch(configuracion.urlJsonServerPost)
-            .then(response => response.json())
-            .then((data: IPost[]) => {
-                setPosts(data);
-            });
-    }, []);
-
+    const { data: posts, loading, error } = useFetch<IPost[]>(configuracion.urlJsonServerPost);
+    
+    if (loading) return <p>Cargando...</p>;
+    if (error) return <p>Error: {error}</p>;
+    
     return (
         <>
             <h1>Post List</h1>
             <ul>
                 {
-                    posts.map(post => (
+                    posts && posts.map(post => (
                         <Post key={post.id} id={post.id!} userId={post.userId} title={post.title} body={post.content} imagen={post.imagen} />
                     ))}
             </ul>

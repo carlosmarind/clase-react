@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { MainLayout } from "../layout/MainLayout";
-import { useDispatch } from "react-redux";
-import { addUser } from "../states/usersSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser, UserWithId } from "../states/usersSlice";
+import { RootType } from "../states/store";
 
 interface IForm {
     name: string;
@@ -11,6 +12,7 @@ interface IForm {
 
 export const GestionUsuarios = () => {
 
+    const users: UserWithId[] = useSelector((state: RootType) => state.users);
     const dispatch = useDispatch();
 
     const [form, setForm] = useState<IForm>({
@@ -63,6 +65,26 @@ export const GestionUsuarios = () => {
                 <input type="email" name="email" placeholder="Aqui tu correo" onChange={handleChange} value={form.email} />
                 <button type="button" onClick={handleSubmit}>Guardar</button>
             </form>
-        </MainLayout>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {users.map((user) => (
+                        <tr key={user.id}>
+                            <td>{user.id}</td>
+                            <td>{user.name}</td>
+                            <td>{user.username}</td>
+                            <td>{user.email}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </MainLayout >
     );
 }
