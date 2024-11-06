@@ -15,6 +15,7 @@ export const Header = () => {
                 <li><Link className={styles.link} to="/dashboard">Dashboard</Link></li>
                 <li><Link className={styles.link} to="/posts">Posts</Link></li>
                 <li><Link className={styles.link} to="/admin">Admin</Link></li>
+                <li><Link className={styles.link} to="/user-lab">Users Lab</Link></li>
                 <li><Link className={styles.link} to="/auth">AuthPage</Link></li>
                 <li><Link className={styles.link} to="/about">About</Link></li>
             </ul>
