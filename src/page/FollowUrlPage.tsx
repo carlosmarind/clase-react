@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { MainLayout } from "../layout/MainLayout"
+import Button from 'react-bootstrap/Button';
+import Table from "react-bootstrap/Table";
+import Form from "react-bootstrap/Form";
 
 export const FollowUrlPage = () => {
 
@@ -8,6 +11,8 @@ export const FollowUrlPage = () => {
     const [userManagementUrl, setUserManagementUrl] = useState<{ createUser: { method: string, url: string }, deleteUser: { method: string, url: string }, queryUser: { method: string, url: string }, message: string, token: string }>();
     const [users, setUsers] = useState<{ id: string, name: string, email: string }[]>();
     const [form, setForm] = useState<{ id: string, name: string, email: string }>({ id: crypto.randomUUID(), name: '', email: '' });
+
+    const [validated, setValidated] = useState<boolean>(false);
 
     useEffect(() => {
         const query = async () => {
@@ -67,7 +72,17 @@ export const FollowUrlPage = () => {
     }
 
     const handleSubmit = async (event: React.FormEvent) => {
-        //event.preventDefault();
+
+        const htmlForm = event.currentTarget;
+        event.preventDefault();
+
+        setValidated(true);
+        if (htmlForm.checkValidity() === false) {
+            event.stopPropagation();
+            return;
+        }
+
+        setValidated(false);
         await fetch(userManagementUrl?.createUser.url, {
             method: userManagementUrl?.createUser.method,
             headers: {
@@ -95,15 +110,33 @@ export const FollowUrlPage = () => {
     return (
         <MainLayout>
             <div>
-                <form>
-                    <input type="text" placeholder="id" name="id" readOnly value={form.id} />
-                    <input type="text" placeholder="name" name="name" value={form.name} onChange={handleChange} />
-                    <input type="text" placeholder="email" name="email" value={form.email} onChange={handleChange} />
-                    <button type="button" onClick={handleSubmit}>Guardar</button>
-                </form>
+                <Form onSubmit={handleSubmit} noValidate validated={validated}>
+                    <Form.Group>
+                        <Form.Label>Identificador</Form.Label>
+                        <Form.Control type="text" name="id" readOnly value={form.id} />
+                        <Form.Text className="text-muted">
+                            Este campo es el id y  no se puede modificar
+                        </Form.Text>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Nombre</Form.Label>
+                        <Form.Control type="text" name="name" value={form.name} onChange={handleChange} required />
+                        <Form.Control.Feedback type="invalid">
+                            Por favor, ingrese un nombre
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>email</Form.Label>
+                        <Form.Control type="email" name="email" value={form.email} onChange={handleChange} required />
+                        <Form.Control.Feedback type="invalid">
+                            Por favor, ingrese un email valido
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <Button variant="primary" size="sm" type="submit">Guardar</Button>
+                </Form>
             </div>
             <div>
-                <table>
+                <  Table striped bordered hover size="sm">
                     <thead>
                         <tr>
                             <th>id</th>
@@ -118,11 +151,13 @@ export const FollowUrlPage = () => {
                                 <td>{user.id}</td>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
-                                <td><button onClick={() => handleDelete(user.id)}>Eliminar</button></td>
+                                <td>
+                                    <Button variant="primary" size="sm" onClick={() => handleDelete(user.id)}>Eliminar</Button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
-                </table>
+                </Table>
             </div>
         </MainLayout>
     )

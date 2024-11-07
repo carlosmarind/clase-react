@@ -9,7 +9,7 @@ import { DashboardPage } from './page/DashboardPage'
 import { AdminPage } from './page/AdminPage'
 import { LoginPage } from './page/LoginPage'
 import { PrivateRoute } from './layout/protected/PrivateRoute'
-import './index.css'
+
 import { StrictMode } from 'react'
 import { PostPage } from './page/PostPage'
 import { Provider } from 'react-redux'
@@ -17,7 +17,8 @@ import { store } from './states/store'
 import { GestionUsuarios } from './page/GestionUsuarios'
 import { AuthPage } from './page/AuthPage'
 import { FollowUrlPage } from './page/FollowUrlPage'
-
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './index.css'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
