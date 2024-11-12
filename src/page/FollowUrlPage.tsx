@@ -26,7 +26,7 @@ export const FollowUrlPage = () => {
 
     useEffect(() => {
         const query = async () => {
-            const response = await fetch(findAuthenticateUrl?.queryLoginUrl, { method: findAuthenticateUrl?.queryMethod });
+            const response = await fetch(findAuthenticateUrl ? findAuthenticateUrl.queryLoginUrl : "", { method: findAuthenticateUrl?.queryMethod });
             const json: { queryLoginUrl: string, queryMethod: string } = await response.json();
             setAuthenticateUrl(json);
             console.log(json);
@@ -37,7 +37,7 @@ export const FollowUrlPage = () => {
     useEffect(() => {
         const authenticate = async () => {
 
-            const result = await fetch(authenticateUrl?.queryLoginUrl, {
+            const result = await fetch(authenticateUrl ? authenticateUrl.queryLoginUrl : "", {
                 method: authenticateUrl?.queryMethod,
                 headers: {
                     'Content-type': 'application/json'
@@ -53,7 +53,7 @@ export const FollowUrlPage = () => {
 
     useEffect(() => {
         const queryUsers = async () => {
-            const result = await fetch(userManagementUrl?.queryUser.url, {
+            const result = await fetch(userManagementUrl ? userManagementUrl.queryUser.url : "", {
                 method: userManagementUrl?.queryUser.method,
                 headers: {
                     'Authorization': `Bearer ${userManagementUrl?.token}`
@@ -71,19 +71,20 @@ export const FollowUrlPage = () => {
         setForm({ ...form, [e.target.name]: e.target.value });
     }
 
-    const handleSubmit = async (event: React.FormEvent) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 
-        const htmlForm = event.currentTarget;
         event.preventDefault();
+        const htmlForm = event.currentTarget;
 
         setValidated(true);
+
         if (htmlForm.checkValidity() === false) {
             event.stopPropagation();
             return;
         }
 
         setValidated(false);
-        await fetch(userManagementUrl?.createUser.url, {
+        await fetch(userManagementUrl ? userManagementUrl.createUser.url : "", {
             method: userManagementUrl?.createUser.method,
             headers: {
                 'Content-type': 'application/json',
@@ -96,7 +97,7 @@ export const FollowUrlPage = () => {
 
     const handleDelete = async (id: string) => {
         console.log('eliminando usuario:' + id);
-        await fetch(userManagementUrl?.deleteUser.url, {
+        await fetch(userManagementUrl ? userManagementUrl.deleteUser.url : "", {
             method: userManagementUrl?.deleteUser.method,
             headers: {
                 'Content-type': 'application/json',
