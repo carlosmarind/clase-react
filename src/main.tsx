@@ -19,6 +19,10 @@ import { AuthPage } from './page/AuthPage'
 import { FollowUrlPage } from './page/FollowUrlPage'
 import 'bootstrap/dist/css/bootstrap.min.css'
 //import './index.css'
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>

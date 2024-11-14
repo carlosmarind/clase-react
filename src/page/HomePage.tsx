@@ -1,10 +1,11 @@
-import { BoostrapLayout } from "../layout/BoostrapLayout"
+import { BootstrapLayout } from "../layout/BootstrapLayout"
+
 
 export const HomePage = () => {
 
     return (
-        <BoostrapLayout>
+        <BootstrapLayout>
             <div>esta sera mi nuevo contenido</div>
-        </BoostrapLayout >
+        </BootstrapLayout >
     )
 }
