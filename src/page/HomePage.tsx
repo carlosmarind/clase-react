@@ -1,10 +1,11 @@
-import { MainLayout } from "../layout/MainLayout"
+import { BootstrapLayout } from "../layout/BootstrapLayout"
+
 
 export const HomePage = () => {
 
     return (
-        <MainLayout>
+        <BootstrapLayout>
             <div>esta sera mi nuevo contenido</div>
-        </MainLayout >
+        </BootstrapLayout >
     )
 }

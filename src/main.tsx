@@ -18,7 +18,8 @@ import { GestionUsuarios } from './page/GestionUsuarios'
 import { AuthPage } from './page/AuthPage'
 import { FollowUrlPage } from './page/FollowUrlPage'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './index.css'
+//import './index.css'
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
