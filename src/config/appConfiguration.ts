@@ -4,6 +4,3 @@ export const configuracion = {
     },
     urlJsonServerPost: import.meta.env.VITE_URL_ENDPOINT_BACKEND
 } as const;
-
-//url desarrollo urlJsonServerPost : 'http://localhost:4000/posts'
-//url produccion urlJsonServerPost : 'http://bootcamp-dcc.cl/posts'

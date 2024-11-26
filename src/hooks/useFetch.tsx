@@ -36,7 +36,7 @@ export function useFetch<T>(url: string): { data: T | null, loading: boolean, er
 
         fetchData();
 
-    }, [url]);
+    }, [url,token]);
 
     return { data, loading, error };
 }

@@ -1,5 +1,5 @@
 import { Post } from "./Post";
-import { IPost } from "../page/PostPage";
+import { IPost } from "../page/Playground/ImageFormPage";
 import { configuracion } from "../config/appConfiguration";
 import { useFetch } from "../hooks/useFetch";
 

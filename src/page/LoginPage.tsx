@@ -3,7 +3,7 @@ import { login } from "../services/login/loginService";
 import { useNavigate } from "react-router-dom";
 import { MainLayout } from "../layout/MainLayout";
 import { useDispatch } from "react-redux";
-import { save } from "../states/loggedUserSlice";
+import { save } from "../states/slices/loggedUserSlice";
 
 interface IForm {
     user: string;

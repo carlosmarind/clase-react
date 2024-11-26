@@ -1,8 +1,8 @@
-import styles from "./Footer.module.css"
+import { Col } from "react-bootstrap"
 export const Footer = () => {
     return (
-        <footer className={styles.footer}>
-            <h1>Todos los derechos reservados</h1>
-        </footer>
+        <Col md={6} className="text-center">
+            © Todos los derechos reservados
+        </Col>
     )
 }

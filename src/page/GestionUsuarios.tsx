@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MainLayout } from "../layout/MainLayout";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser, UserWithId } from "../states/usersSlice";
+import { addUser, UserWithId } from "../states/slices/usersSlice";
 import { RootType } from "../states/store";
 
 interface IForm {
