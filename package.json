@@ -6,12 +6,13 @@
   "home": "https://carlosmarind.github.io/clase-react",
   "scripts": {
     "dev": "vite",
+    "prebuild": "rimraf dist",
     "build": "tsc -b && vite build",
+    "build-docker": "docker build -t clase-react .",
     "lint": "eslint .",
     "preview": "vite preview",
     "json-server": "json-server src/data/data.json --port 4000",
-    "prepublish": "npm run build",
-    "publish": "gh-pages -d dist"
+    "publish-gh": "gh-pages -d dist"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.7",
@@ -34,6 +35,7 @@
     "eslint-plugin-react-refresh": "^0.4.9",
     "gh-pages": "^6.2.0",
     "globals": "^15.9.0",
+    "rimraf": "^6.0.1",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
     "vite": "^5.4.1"
